@@ -1,0 +1,386 @@
+<!DOCTYPE HTML>
+<html>
+	<head>
+	<title>March Flashcard Sample</title>
+	<link rel="preconnect" href="https://fonts.gstatic.com">
+	<link href="https://fonts.googleapis.com/css2?family=Akaya+Kanadaka&display=swap" rel="stylesheet">
+	
+	
+	<style>
+	* {
+		box-sizing: border-box;
+		font-family: 'Akaya Kanadaka', cursive;
+	}
+	
+	.flip-container {
+		margin: 10vh auto;
+		
+		-webkit-perspective: 1000;
+		-moz-perspective: 1000;
+		-ms-perspective: 1000;
+		perspective: 1000;
+			
+		-ms-transform: perspective(1000px);
+		-moz-transform: perspective(1000px);
+			
+		-moz-transform-style: preserve-3d;
+		-ms-transform-style: preserve-3d;
+		-ms-transform-origin: preserve-3d;
+		}
+	
+	/* flip the pane, and move down*/
+	.flip-container.flipped .flipper, .flip-container.flipped .flipper {
+		-webkit-transform: rotateY(180deg);
+	  -moz-transform: rotateY(180deg);
+	  -o-transform: rotateY(180deg);
+	  transform: rotateY(180deg);
+	  
+		}
+	
+	.flip-container, .front, .back {
+		width: 600px;
+		height: 400px;
+		border-radius: 1em;
+		}
+		@media only screen and (max-width: 768px) {
+			.flip-container{
+				margin: 10vh auto;
+		}
+		.flip-container, .front, .back {
+			width: 80vw;
+			height: 80vh;
+		}
+	}
+	
+	/*change style of the card here */
+	.front {
+		text-align: center;
+		color: white;
+		border:solid 10px var(--border);
+
+        
+	}
+	.back {
+		text-align: center;
+		color: var(--text);
+		border:solid 10px var(--border);
+	}
+	
+	#flashcard-content-front, #flashcard-content-back{
+		position: relative;
+		top: 40%;
+	}
+	
+	/* flip speed goes here */
+	.flipper {
+	    position: relative;
+	    -webkit-transition: 0.6s;
+	    -webkit-transform-style: preserve-3d;
+	    -ms-transition: 0.6s;
+	    -moz-transition: 0.6s;
+	    -moz-transform: perspective(1000px);
+	    -moz-transform-style: preserve-3d;
+	    -ms-transform-style: preserve-3d;
+	    transition: 0.6s;
+	    transform-style: preserve-3d;
+	}
+	
+	/* hide back of pane during swap */
+	.front, .back {
+		  position: absolute;
+	    top: 0;
+	    left: 0;
+	    -webkit-backface-visibility: hidden;
+	    -moz-backface-visibility: hidden;
+	    -ms-backface-visibility: hidden;
+	    backface-visibility: hidden;
+		
+	    -webkit-transition: 0.6s;
+	    -webkit-transform-style: preserve-3d;
+	    -webkit-transform: rotateY(0deg);
+	    -moz-transition: 0.6s;
+	    -moz-transform-style: preserve-3d;
+	    -moz-transform: rotateY(0deg);
+	    -o-transition: 0.6s;
+	    -o-transform-style: preserve-3d;
+	    -o-transform: rotateY(0deg);
+	    -ms-transition: 0.6s;
+	    -ms-transform-style: preserve-3d;
+	    -ms-transform: rotateY(0deg);
+	    transition: 0.6s;
+	    transform-style: preserve-3d;
+	    transform: rotateY(0deg);
+	}
+	
+	/* front pane, placed above back */
+	.front {
+		z-index: 2;
+		/* for firefox 31 */
+	  -webkit-transform: rotateY(0deg);
+	  -ms-transform: rotateY(0deg);
+		background-image:radial-gradient(circle,skyblue,blue);
+	}
+	
+	/* back, initially hidden pane */
+	.back {
+	  -webkit-transform: rotateY(-180deg);
+	  -moz-transform: rotateY(-180deg);
+	  -o-transform: rotateY(-180deg);
+	  -ms-transform: rotateY(-180deg);
+	  transform: rotateY(-180deg);
+		background-color: var(--back);
+	}
+	
+	div{
+		text-align:center;
+	}
+	
+	button{
+		/*Adjust the size, spacing, or color of the buttons*/
+				height: 3em;
+				width: 200px;
+				background-image:radial-gradient(circle,skyblue,blue);
+				color: black;
+				text-align: center;
+				font-size: 40px;
+				font-family: 'Akaya Kanadaka', cursive;
+                border-radius: 30px;
+				
+	}
+	
+	body{
+		--background: #f5cdde;
+		--front: white;
+		--back: white;
+		--text: #7dffc9;
+		--border: #daffcf;
+		--title: #7dffc9;
+		font-family: 'Akaya Kanadaka', cursive;
+		font-size: 65px;
+		background-image: url("Images/9e8a323a1239015fe49afd012ecb9f40.jpg");
+		
+			
+	}
+	
+	h1{
+		/* Change the font or font size of the header here*/
+		font-size: 70px;
+		font-family: 'Akaya Kanadaka', cursive;
+		color: var(--title);
+		text-align: center;
+	}
+	
+	
+
+			.bubbles img{
+            width: 50px;
+            animation: bubble 7s linear infinite;
+        }
+.bubbles{
+    width: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: space-around;
+    position: absolute;
+    bottom: -270px;
+}
+@keyframes bubble{ 
+ 0%{
+     transform: translateY(0);
+     opacity: 0;
+ }
+ 50%{
+     
+     opacity: 1;
+ }
+ 70%{
+     
+     opacity: 1;
+ }
+ 100%{
+    transform: translateY(-80vh);
+     opacity: 0;
+ }
+}
+.bubbles img:nth-child(1){
+    animation-delay: 2s;
+    width: 25px;
+}
+.bubbles img:nth-child(2){
+    animation-delay: 1s;
+}
+.bubbles img:nth-child(3){
+    animation-delay: 3s;
+    width: 25px;
+}
+.bubbles img:nth-child(4){
+    animation-delay: 4.5s;
+}
+.bubbles img:nth-child(5){
+    animation-delay: 3s;
+}
+.bubbles img:nth-child(6){
+    animation-delay: 6s;
+    width: 20px;
+}
+.bubbles img:nth-child(7){
+    animation-delay: 7s;
+    width: 35px;
+}
+
+</style>
+</head>
+
+<body>
+	<div class="background">
+	<h1>Lucky Flashcards</h1>
+	<div class="flip-container" id="flashcard">
+		<div class="flipper">
+			<div class="front">
+				<span id="flashcard-content-front">1</span>
+			</div>
+			<div class="back">
+				<span id="flashcard-content-back">2</span>
+				<div><img src="" style="max-width:80%; max-height: 300px; left:25%; top:75%;" id="card-image"></div>
+			</div>
+		</div>
+	</div> 
+	
+	
+        <div class="bubbles">
+            <img src="Images/bubble.png"  alt="bubble">
+            <img src="Images/bubble.png"  alt="bubble">
+            <img src="Images/bubble.png"  alt="bubble">
+            <img src="Images/bubble.png"  alt="bubble">
+            <img src="Images/bubble.png"  alt="bubble">
+            <img src="Images/bubble.png"  alt="bubble">
+            <img src="Images/bubble.png"  alt="bubble">
+            
+        </div>
+    
+	
+	<div id="buttons">
+			<button id='prev'>Previous</button>
+			<button id='flip'>Flip</button>
+			<button id='next'>Next</button>
+	</div>
+		
+<script>
+	var flashcard = document.getElementById('flashcard');
+	var prev = document.querySelector('#prev');
+	var flip = document.querySelector('#flip');
+	var next = document.querySelector('#next');
+		
+		var questions=[
+			"What gives you luck?",
+			"Question 2?",
+			"Question 3?",
+			"Question 4?",
+			"Question 5?",
+			"Question 6?"
+		];
+		
+		var images=[
+			"https://images.unsplash.com/photo-1554976027-30fa74fd305f?ixlib=rb-1.2.1&ixid=MXwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHw%3D&auto=format&fit=crop&w=1350&q=80",
+			"",
+			"",
+			"",
+			"",
+			""
+		];
+		
+		var answers=[
+			"The four leaf clover",
+			"Answer 2",
+			"Answer 3",
+			"Answer 4",
+			"Answer 5",
+			"Answer 6"
+		];
+
+		var currentText = questions[0];
+		var questionNumber = 0;
+		var cardState = 0;
+		/*!-- 0 indicates the front question side and 1 indicates the back answer side*/
+
+		updateFront();
+		updateBack();
+
+		function flipCard()
+		{
+			if(cardState==0){
+				currentText = answers[questionNumber];
+				cardState++;
+				updateBack();
+			}
+			
+			else{
+				currentText = questions[questionNumber];
+				cardState--;
+				updateFront();
+			}
+		}
+		
+		function nextCard()
+		{
+			var length = questions.length;
+
+			if(questionNumber<length-1)
+				questionNumber++;
+			else
+				questionNumber=0;
+			
+			if(cardState==0){
+				currentText = questions[questionNumber];
+				updateFront();
+			}
+			else{
+				flipCard();
+				flashcard.classList.toggle('flipped');
+				updateText();
+			}
+
+		}
+		
+		function previousCard()
+		{
+			var length = questions.length;
+			if(questionNumber>0)
+				questionNumber--;
+			else
+				questionNumber=length-1;
+			
+			if(cardState==0){
+				currentText = questions[questionNumber];
+				updateFront();
+			}
+			else{
+				flipCard();
+				flashcard.classList.toggle('flipped');
+				updateText();
+			}
+		}
+		
+		/*Updates the text shown on the flashcard after a button press.*/
+		function updateFront(){
+			document.getElementById("flashcard-content-front").innerHTML = currentText;
+			
+		}
+		function updateBack(){
+			document.getElementById("flashcard-content-back").innerHTML = currentText;
+			document.getElementById("card-image").src = images[questionNumber];
+		}
+		
+		flip.addEventListener('click', flipCard);
+		prev.addEventListener('click', previousCard);
+		next.addEventListener('click', nextCard);
+		
+		flip.addEventListener('click', function() {
+			flashcard.classList.toggle('flipped');
+			updateText();
+		}, false);
+
+		</script>
+		
+	</body>
+</html>
